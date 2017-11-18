@@ -1,0 +1,5 @@
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\bin\Release\TrabajoPractico.exe.config
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\bin\Release\TrabajoPractico.exe
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\bin\Release\TrabajoPractico.pdb
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\obj\Release\TrabajoPractico.exe
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\obj\Release\TrabajoPractico.pdb

@@ -1,0 +1,6 @@
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\bin\Debug\TrabajoPractico.exe.config
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\bin\Debug\TrabajoPractico.exe
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\obj\Debug\TrabajoPractico.exe
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\obj\Debug\TrabajoPractico.pdb
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\obj\Debug\TrabajoPractico.csprojResolveAssemblyReference.cache
+C:\Users\Acosta Javier\Google Drive\metaheuristicas\TrabajoPractico\tp_meta_2c2017\TrabajoPractico\bin\Debug\TrabajoPractico.pdb
