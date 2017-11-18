@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrabajoPractico.Entities;
+using TrabajoPractico.Metaheuristic;
 
 namespace TrabajoPractico
 {
@@ -11,10 +12,12 @@ namespace TrabajoPractico
     {
         static void Main(string[] args)
         {
-            
+            var genetic = new Genetic();
+            //genetic.Start();
+
         }
 
-        private void TestMethod()
+        private void TestScoreMethod()
         {
             var matrix = new int[][]
             {
@@ -27,12 +30,12 @@ namespace TrabajoPractico
             var matriz = new Matriz(matrix);
 
             Console.WriteLine("Matriz: \n" + matriz.ToString());
-            Console.WriteLine(string.Format("Score: {0}\n", matriz.GetScore()));
+            Console.WriteLine(string.Format("Score: {0}\n", matriz.Evaluate()));
 
             matriz.Swap(0, 2);
 
             Console.WriteLine("Matriz: \n" + matriz.ToString());
-            Console.WriteLine(string.Format("Score: {0}", matriz.GetScore()));
+            Console.WriteLine(string.Format("Score: {0}", matriz.Evaluate()));
 
             Console.ReadLine();
         }

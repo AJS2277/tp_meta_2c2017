@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrabajoPractico.Interfaces;
 
 namespace TrabajoPractico.Entities
 {
-    public class Matriz
+    public class Matriz : Individual
     {
         public int Size { get; set; }
         private int[][] matrix { get; set; }
@@ -60,7 +61,7 @@ namespace TrabajoPractico.Entities
             return str;
         }
 
-        public int GetScore()
+        public int Evaluate()
         {
             int score = 0;
 
