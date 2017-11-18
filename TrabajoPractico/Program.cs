@@ -11,6 +11,11 @@ namespace TrabajoPractico
     {
         static void Main(string[] args)
         {
+            
+        }
+
+        private void TestMethod()
+        {
             var matrix = new int[][]
             {
                 new int[] { 1, 2, 3, 4 },
@@ -30,11 +35,6 @@ namespace TrabajoPractico
             Console.WriteLine(string.Format("Score: {0}", matriz.GetScore()));
 
             Console.ReadLine();
-        }
-
-        private void TestMethod()
-        {
-
         }
              
     }
