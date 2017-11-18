@@ -10,20 +10,33 @@ namespace TrabajoPractico.Metaheuristic
 {
     public class Genetic
     {
-        public Individual Start(PoblationGenerator poblationGen, StopCriterion stopCriterion, MutationGenerator mutationGen, CrossOver crossOver)
+        public PoblationGenerator PoblationGenerator { get; set; }
+        public StopCriterion StopCriterion { get; set; }
+        public MutationGenerator MutationGenerator { get; set; }
+        public CrossOver CrossOver { get; set; }
+
+        public Genetic(PoblationGenerator poblationGen, StopCriterion stopCriterion, MutationGenerator mutationGen, CrossOver crossOver)
+        {
+            PoblationGenerator = poblationGen;
+            StopCriterion = stopCriterion;
+            MutationGenerator = mutationGen;
+            CrossOver = crossOver;
+        }
+
+        public Individual Start()
         {
             Individual bestIndividual;
-            PoblationGenerator poblation = poblationGen;
-            poblationGen.Generate();
-            poblationGen.Evaluate();
+            PoblationGenerator poblation = PoblationGenerator;
+            PoblationGenerator.Generate();
+            PoblationGenerator.Evaluate();
 
-            while(!stopCriterion.IsEnd())
+            while(!StopCriterion.IsEnd())
             {
                 List<Individual> fathers = poblation.Select();
-                List<Individual> childrens = mutationGen.Generate(fathers);
+                List<Individual> childrens = MutationGenerator.Generate(fathers);
                 var childrensGen = new PoblationGenerator(childrens);
                 childrensGen.Evaluate();
-                var newPoblation = crossOver.Cross(fathers, childrens);
+                var newPoblation = CrossOver.Cross(fathers, childrens);
                 poblation = new PoblationGenerator(newPoblation);
             }
 

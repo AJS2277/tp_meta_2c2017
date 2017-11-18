@@ -12,7 +12,7 @@ namespace TrabajoPractico
     {
         static void Main(string[] args)
         {
-            var genetic = new Genetic();
+            //var genetic = new Genetic();
             //genetic.Start();
 
         }
