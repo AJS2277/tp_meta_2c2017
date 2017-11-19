@@ -9,5 +9,6 @@ namespace TrabajoPractico.Interfaces
     public interface StopCriterion
     {
         bool IsEnd();
+        void Advance();
     }
 }

@@ -9,9 +9,13 @@ namespace TrabajoPractico.Entities
 {
     public class MatrizPoblationGenerator : PoblationGenerator
     {
-        public List<Matriz> Generate<Matriz>()
+        public MatrizPoblationGenerator(List<Individual> childrens) : base(childrens)
         {
-            throw new NotImplementedException();
+        }
+
+        public MatrizPoblationGenerator() : base()
+        {
+            
         }
     }
 }

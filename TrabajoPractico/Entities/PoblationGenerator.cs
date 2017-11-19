@@ -16,6 +16,11 @@ namespace TrabajoPractico.Entities
             this.childrens = childrens;
         }
 
+        public PoblationGenerator()
+        {
+
+        }
+
         public List<Individual> Poblation { get; set; }
 
         public void Evaluate()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TrabajoPractico.Interfaces;
+using TrabajoPractico.Utils.Object;
 
 namespace TrabajoPractico.Entities
 {
@@ -11,6 +12,8 @@ namespace TrabajoPractico.Entities
     {
         public int Size { get; set; }
         private int[][] matrix { get; set; }
+        public int[][] Original { get; set; }
+        public List<Tuple<int, int>> Moves { get; set; } = new List<Tuple<int, int>>();
 
         public void Swap(int i, int j)
         {
@@ -30,12 +33,16 @@ namespace TrabajoPractico.Entities
             matrix[i] = matrix[j];
             matrix[j] = temp2;
 
+            Moves.Add(new Tuple<int, int>(i, j));
+
         }
 
         public Matriz(int[][] matriz)
         {
-            matrix = matriz;
+            matrix = FactoryObject.DeepCopy(matriz);
             Size = matrix.Length;
+
+            Original = matriz;
         }
 
         public override string ToString()
@@ -77,6 +84,31 @@ namespace TrabajoPractico.Entities
             }
 
             return score;
+        }
+
+        public void Mutate()
+        {
+            var random = new Random();
+            var position = random.Next(0, Moves.Count);
+            var randomI = new Random();
+            var randomJ = new Random();
+            var i = randomI.Next(0, Size);
+            var j = randomJ.Next(0, Size);
+
+            Moves.RemoveAt(position);
+            Moves.Insert(position, new Tuple<int, int>(i, j));
+
+            Rebuild();
+        }
+
+        private void Rebuild()
+        {
+            matrix = FactoryObject.DeepCopy(Original);
+
+            foreach (var move in Moves)
+            {
+                Swap(move.Item1, move.Item2);
+            }
         }
     }
 }

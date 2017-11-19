@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using TrabajoPractico.Entities;
 using TrabajoPractico.Interfaces;
+using TrabajoPractico.MutationGenerators;
 
 namespace TrabajoPractico.Metaheuristic
 {
@@ -36,8 +37,9 @@ namespace TrabajoPractico.Metaheuristic
                 List<Individual> childrens = MutationGenerator.Generate(fathers);
                 var childrensGen = new PoblationGenerator(childrens);
                 childrensGen.Evaluate();
-                var newPoblation = CrossOver.Cross(fathers, childrens);
+                var newPoblation = CrossOver.Cross(poblation.Poblation, childrens);
                 poblation = new PoblationGenerator(newPoblation);
+                StopCriterion.Advance();
             }
 
             bestIndividual = poblation.GetBest();

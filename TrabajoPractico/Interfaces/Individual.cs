@@ -9,5 +9,6 @@ namespace TrabajoPractico.Interfaces
     public interface Individual
     {
         int Evaluate();
+        void Mutate();
     }
 }

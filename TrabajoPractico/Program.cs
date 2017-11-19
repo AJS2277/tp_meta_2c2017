@@ -3,8 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TrabajoPractico.CrossOvers;
 using TrabajoPractico.Entities;
 using TrabajoPractico.Metaheuristic;
+using TrabajoPractico.MutationGenerators;
+using TrabajoPractico.StopCriterions;
 
 namespace TrabajoPractico
 {
@@ -12,8 +15,16 @@ namespace TrabajoPractico
     {
         static void Main(string[] args)
         {
-            //var genetic = new Genetic();
-            //genetic.Start();
+            var poblationGen = new MatrizPoblationGenerator();
+            var stopCriterion = new LOStopCriterion1(10);
+            var mutationGen = new MutationGenerator();
+            var crossOver = new SimpleMatrizCrossOver();
+            var genetic = new Genetic(poblationGen, stopCriterion, mutationGen, crossOver);
+
+            var bestMatriz = (Matriz) genetic.Start();
+
+            Console.WriteLine("Matriz: \n" + bestMatriz.ToString());
+            Console.WriteLine(string.Format("Score: {0}\n", bestMatriz.Evaluate()));
 
         }
 

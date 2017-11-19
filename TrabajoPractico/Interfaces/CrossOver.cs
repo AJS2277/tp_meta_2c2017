@@ -8,6 +8,6 @@ namespace TrabajoPractico.Interfaces
 {
     public interface CrossOver
     {
-        List<Individual> Cross(List<Individual> fathers, List<Individual> childrens);
+        List<Individual> Cross(List<Individual> poblation, List<Individual> childrens);
     }
 }

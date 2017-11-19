@@ -42,20 +42,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CrossOvers\SimpleMatrizCrossOver.cs" />
     <Compile Include="Entities\Matriz.cs" />
     <Compile Include="Entities\MatrizPoblationGenerator.cs" />
     <Compile Include="Entities\PoblationGenerator.cs" />
     <Compile Include="Interfaces\CrossOver.cs" />
     <Compile Include="Interfaces\Individual.cs" />
-    <Compile Include="Interfaces\MutationGenerator.cs" />
     <Compile Include="Interfaces\StopCriterion.cs" />
     <Compile Include="Metaheuristic\Genetic.cs" />
+    <Compile Include="MutationGenerators\MutationGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StopCriterions\LOStopCriterion1.cs" />
+    <Compile Include="Utils\Object\FactoryObject.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
