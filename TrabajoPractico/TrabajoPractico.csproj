@@ -44,8 +44,9 @@
   <ItemGroup>
     <Compile Include="CrossOvers\SimpleMatrizCrossOver.cs" />
     <Compile Include="Entities\Matriz.cs" />
-    <Compile Include="Entities\MatrizPoblationGenerator.cs" />
-    <Compile Include="Entities\PoblationGenerator.cs" />
+    <Compile Include="MutationGenerators\MutationGeneration1.cs" />
+    <Compile Include="PoblationGenerators\MatrizPoblationGeneratorRandom.cs" />
+    <Compile Include="PoblationGenerators\PoblationGenerator.cs" />
     <Compile Include="Interfaces\CrossOver.cs" />
     <Compile Include="Interfaces\Individual.cs" />
     <Compile Include="Interfaces\StopCriterion.cs" />

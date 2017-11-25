@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using TrabajoPractico.Entities;
 using TrabajoPractico.Interfaces;
 using TrabajoPractico.MutationGenerators;
+using TrabajoPractico.PoblationGenerators;
 
 namespace TrabajoPractico.Metaheuristic
 {
@@ -15,36 +16,29 @@ namespace TrabajoPractico.Metaheuristic
         public StopCriterion StopCriterion { get; set; }
         public MutationGenerator MutationGenerator { get; set; }
         public CrossOver CrossOver { get; set; }
+        public Individual Best { get; set; }
 
-        public Genetic(PoblationGenerator poblationGen, StopCriterion stopCriterion, MutationGenerator mutationGen, CrossOver crossOver)
+        public Genetic(params object[] list)
         {
-            PoblationGenerator = poblationGen;
-            StopCriterion = stopCriterion;
-            MutationGenerator = mutationGen;
-            CrossOver = crossOver;
         }
 
         public Individual Start()
         {
-            Individual bestIndividual;
-            PoblationGenerator poblation = PoblationGenerator;
+            Best = PoblationGenerator.Original;
             PoblationGenerator.Generate();
-            PoblationGenerator.Evaluate();
 
             while(!StopCriterion.IsEnd())
             {
-                List<Individual> fathers = poblation.Select();
+                List<Individual> fathers = PoblationGenerator.Select();
                 List<Individual> childrens = MutationGenerator.Generate(fathers);
-                var childrensGen = new PoblationGenerator(childrens);
-                childrensGen.Evaluate();
-                var newPoblation = CrossOver.Cross(poblation.Poblation, childrens);
-                poblation = new PoblationGenerator(newPoblation);
+                var newPoblation = CrossOver.Cross(PoblationGenerator.Poblation, childrens);
+                PoblationGenerator.Poblation = newPoblation;
                 StopCriterion.Advance();
             }
 
-            bestIndividual = poblation.GetBest();
+            Best = PoblationGenerator.GetBest();
 
-            return bestIndividual;
+            return Best;
         }
     }
 }

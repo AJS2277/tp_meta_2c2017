@@ -14,10 +14,14 @@ namespace TrabajoPractico.Entities
         private int[][] matrix { get; set; }
         public int[][] Original { get; set; }
         public List<Tuple<int, int>> Moves { get; set; } = new List<Tuple<int, int>>();
+        public int Fitness { get; set; }
 
-        public void Swap(int i, int j)
+        public void Swap(Tuple<int, int> move)
         {
-            if(i >= Size || j >= Size)
+            var i = move.Item1;
+            var j = move.Item2;
+
+            if (i >= Size || j >= Size)
             {
                 throw new Exception("La fila o columna no debe ser menor a " + Size);
             }
@@ -33,7 +37,8 @@ namespace TrabajoPractico.Entities
             matrix[i] = matrix[j];
             matrix[j] = temp2;
 
-            Moves.Add(new Tuple<int, int>(i, j));
+            Moves.Add(move);
+            Evaluate();
 
         }
 
@@ -41,7 +46,7 @@ namespace TrabajoPractico.Entities
         {
             matrix = FactoryObject.DeepCopy(matriz);
             Size = matrix.Length;
-
+            Evaluate();
             Original = matriz;
         }
 
@@ -68,7 +73,7 @@ namespace TrabajoPractico.Entities
             return str;
         }
 
-        public int Evaluate()
+        public virtual void Evaluate()
         {
             int score = 0;
 
@@ -83,32 +88,37 @@ namespace TrabajoPractico.Entities
                 }
             }
 
-            return score;
+            Fitness = score;
         }
 
-        public void Mutate()
+        public void Rebuild()
         {
-            var random = new Random();
-            var position = random.Next(0, Moves.Count);
+            foreach (var move in Moves)
+            {
+                Swap(move);
+            }
+
+            Evaluate();
+        }
+
+        public Tuple<int, int> GetRandomCoordinate()
+        {
             var randomI = new Random();
             var randomJ = new Random();
             var i = randomI.Next(0, Size);
             var j = randomJ.Next(0, Size);
 
-            Moves.RemoveAt(position);
-            Moves.Insert(position, new Tuple<int, int>(i, j));
+            var tuple = new Tuple<int, int>(i, j);
 
-            Rebuild();
+            return tuple;
         }
 
-        private void Rebuild()
+        public int GetRandomPosition()
         {
-            matrix = FactoryObject.DeepCopy(Original);
+            var random = new Random();
+            var position = random.Next(0, Moves.Count);
 
-            foreach (var move in Moves)
-            {
-                Swap(move.Item1, move.Item2);
-            }
+            return position;
         }
     }
 }

@@ -16,16 +16,17 @@ namespace TrabajoPractico.MutationGenerators
 
             foreach (Individual father in fathers)
             {
-                var randomI = new Random();
-                var randomJ = new Random();
-
                 var mutation = FactoryObject.DeepCopy(father);
-                mutation.Mutate();
+                Mutate(mutation);
 
                 mutations.Add(mutation);
             }
 
             return mutations;
+        }
+
+        public virtual void Mutate(Individual individual)
+        {
         }
     }
 }
