@@ -11,12 +11,20 @@ namespace TrabajoPractico.PoblationGenerators
     {
         public Individual Original { get; set; }
         public List<Individual> Poblation { get; set; }
+        public int Selections { get; set; }
         public int Size { get; set; }
 
-        public PoblationGenerator(Individual individual, int size)
+        public PoblationGenerator(Individual individual, int size, int selections)
         {
             Original = individual;
             Size = size;
+
+            if(selections > size)
+            {
+                throw new Exception("La selección no puede ser mejor al tamaño de la población");
+            }
+
+            Selections = selections;
             Generate();
         }
 
@@ -25,7 +33,7 @@ namespace TrabajoPractico.PoblationGenerators
 
         }
 
-        public List<Individual> Select()
+        public virtual List<Individual> Select()
         {
             return Poblation;
         }

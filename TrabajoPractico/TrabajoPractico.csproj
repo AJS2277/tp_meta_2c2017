@@ -55,6 +55,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="StopCriterions\LOStopCriterion1.cs" />
+    <Compile Include="Utils\List\ListFactory.cs" />
     <Compile Include="Utils\Object\FactoryObject.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -9,5 +9,6 @@ namespace TrabajoPractico.Interfaces
     public interface CrossOver
     {
         List<Individual> Cross(List<Individual> poblation, List<Individual> childrens);
+        Individual Cross(Individual normal, Individual mutated);
     }
 }

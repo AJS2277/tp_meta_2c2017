@@ -15,7 +15,7 @@ namespace TrabajoPractico.MutationGenerators
             
             var matriz = (Matriz)individual;
             int position = matriz.GetRandomPosition();
-            Tuple<int, int> randomCoordinate = matriz.GetRandomCoordinate();
+            Tuple<int, int> randomCoordinate = matriz.GetRandomCoordinates(1).First();
 
             matriz.Moves.RemoveAt(position);
             matriz.Moves.Insert(position, randomCoordinate);

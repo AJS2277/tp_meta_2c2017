@@ -17,16 +17,24 @@ namespace TrabajoPractico
         static void Main(string[] args)
         {
             Matriz matriz = GetSimpleMatriz();
-            var poblationGen = new MatrizPoblationGeneratorRandom(matriz, 10);
+            var poblationGen = new MatrizPoblationGeneratorRandom(matriz, 6, 3);
             var stopCriterion = new LOStopCriterion1(10);
-            var mutationGen = new MutationGenerator();
+            var mutationGen = new MutationGeneration1();
             var crossOver = new SimpleMatrizCrossOver();
-            var genetic = new Genetic(poblationGen, stopCriterion, mutationGen, crossOver);
+
+            var genetic = new Genetic();
+            genetic.CrossOver = crossOver;
+            genetic.StopCriterion = stopCriterion;
+            genetic.MutationGenerator = mutationGen;
+            genetic.PoblationGenerator = poblationGen;
+
+            Console.WriteLine("Matriz original: \n" + matriz.ToString());
+            Console.WriteLine(string.Format("Score original: {0}\n\n", matriz.Fitness));
 
             var bestMatriz = (Matriz) genetic.Start();
 
-            Console.WriteLine("Matriz: \n" + bestMatriz.ToString());
-            Console.WriteLine(string.Format("Score: {0}\n", bestMatriz.Fitness));
+            Console.WriteLine("Mejor matriz: \n" + bestMatriz.ToString());
+            Console.WriteLine(string.Format("Mejor score: {0}\n", bestMatriz.Fitness));
 
         }
 
@@ -41,16 +49,6 @@ namespace TrabajoPractico
             };
 
             var matriz = new Matriz(matrix);
-
-            Console.WriteLine("Matriz: \n" + matriz.ToString());
-            Console.WriteLine(string.Format("Score: {0}\n", matriz.Fitness));
-            var move = new Tuple<int, int>(0, 2);
-            matriz.Swap(move);
-
-            Console.WriteLine("Matriz: \n" + matriz.ToString());
-            Console.WriteLine(string.Format("Score: {0}", matriz.Fitness));
-
-            Console.ReadLine();
 
             return matriz;
         }

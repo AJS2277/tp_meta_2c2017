@@ -11,25 +11,38 @@ namespace TrabajoPractico.PoblationGenerators
 {
     public class MatrizPoblationGeneratorRandom : PoblationGenerator
     {
-        
-        public MatrizPoblationGeneratorRandom(Matriz matriz, int size) : base(matriz, size)
+        public MatrizPoblationGeneratorRandom(Matriz matriz, int size, int selections) : base(matriz, size, selections)
         {
+            int maxSize = ( matriz.Size * (matriz.Size - 1) ) / 2;
+            if(size > maxSize)
+            {
+                var message = string.Format("No hay suficientes movimientos para satisfacer el tamaño de la población." 
+                    + " El máximo es: {0}", maxSize);
+                throw new Exception(message);
+            }
         }
 
         public override void Generate()
         {
             Matriz originalAsMatriz = (Matriz)Original;
-            var poblation = new List<Individual>();
+            var poblation = new List<Matriz>();
+            List<Tuple<int, int>> moves = originalAsMatriz.GetRandomCoordinates(Size);
 
-            for (int i = 0; i < Size; i++)
+            foreach (var move in moves)
             {
                 Matriz individual = FactoryObject.DeepCopy(originalAsMatriz);
-                Tuple<int, int> move = originalAsMatriz.GetRandomCoordinate();
                 individual.Swap(move);
                 poblation.Add(individual);
             }
-            
-            Poblation = poblation;
+
+            Poblation = poblation.Cast<Individual>().ToList();
+        }
+
+        public override List<Individual> Select()
+        {
+            List<Matriz> selectedMatrices = Poblation.Cast<Matriz>().OrderByDescending(x => x.Fitness).Take(Selections).ToList();
+
+            return selectedMatrices.Cast<Individual>().ToList();
         }
     }
 }

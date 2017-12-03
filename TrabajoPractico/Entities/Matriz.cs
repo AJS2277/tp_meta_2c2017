@@ -8,6 +8,7 @@ using TrabajoPractico.Utils.Object;
 
 namespace TrabajoPractico.Entities
 {
+    [Serializable]
     public class Matriz : Individual
     {
         public int Size { get; set; }
@@ -93,7 +94,9 @@ namespace TrabajoPractico.Entities
 
         public void Rebuild()
         {
-            foreach (var move in Moves)
+            var movesToDo = FactoryObject.DeepCopy(Moves);
+
+            foreach (var move in movesToDo)
             {
                 Swap(move);
             }
@@ -101,16 +104,27 @@ namespace TrabajoPractico.Entities
             Evaluate();
         }
 
-        public Tuple<int, int> GetRandomCoordinate()
+        private Random randomSelecter = new Random();
+        public List<Tuple<int, int>> GetRandomCoordinates(int size)
         {
-            var randomI = new Random();
-            var randomJ = new Random();
-            var i = randomI.Next(0, Size);
-            var j = randomJ.Next(0, Size);
+            List<Tuple<int, int>> coordinates = GenerateRandomCoordinates().Take(size).ToList();
 
-            var tuple = new Tuple<int, int>(i, j);
+            return coordinates;
+        }
 
-            return tuple;
+        private List<Tuple<int, int>> GenerateRandomCoordinates()
+        {
+            var coordinates = new List<Tuple<int, int>>();
+
+            for (int i = 0; i < Size; i++)
+            {
+                for (int j = 0; j < i; j++)
+                {
+                    coordinates.Add(new Tuple<int, int>(i, j));
+                }
+            }
+
+            return coordinates.OrderBy(x => randomSelecter.Next()).ToList();
         }
 
         public int GetRandomPosition()

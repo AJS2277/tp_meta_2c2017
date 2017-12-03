@@ -25,7 +25,6 @@ namespace TrabajoPractico.Metaheuristic
         public Individual Start()
         {
             Best = PoblationGenerator.Original;
-            PoblationGenerator.Generate();
 
             while(!StopCriterion.IsEnd())
             {
