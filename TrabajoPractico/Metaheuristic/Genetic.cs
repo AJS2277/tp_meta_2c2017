@@ -29,15 +29,40 @@ namespace TrabajoPractico.Metaheuristic
             while(!StopCriterion.IsEnd())
             {
                 List<Individual> fathers = PoblationGenerator.Select();
+
+                if(PoblationGenerator.Best.Evaluate() > Best.Evaluate() )
+                {
+                    Best = PoblationGenerator.Best;
+                }
+
                 List<Individual> childrens = MutationGenerator.Generate(fathers);
+
+                if (GetBest(childrens).Evaluate() > Best.Evaluate())
+                {
+                    Best = GetBest(childrens);
+                }
+
                 var newPoblation = CrossOver.Cross(PoblationGenerator.Poblation, childrens);
                 PoblationGenerator.Poblation = newPoblation;
+                Individual bestNewPoblation = PoblationGenerator.GetBest();
+
+                if (bestNewPoblation.Evaluate() > Best.Evaluate())
+                {
+                    Best = bestNewPoblation;
+                }
+
                 StopCriterion.Advance();
             }
 
-            Best = PoblationGenerator.GetBest();
-
             return Best;
+        }
+
+        private Individual GetBest(List<Individual> childrens)
+        {
+            List<Individual> selectedMatrices = childrens.OrderByDescending(x => x.Evaluate()).ToList();
+
+            return selectedMatrices.FirstOrDefault();
+
         }
     }
 }

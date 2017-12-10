@@ -13,6 +13,7 @@ namespace TrabajoPractico.PoblationGenerators
         public List<Individual> Poblation { get; set; }
         public int Selections { get; set; }
         public int Size { get; set; }
+        public Individual Best { get; set; }
 
         public PoblationGenerator(Individual individual, int size, int selections)
         {
@@ -38,7 +39,7 @@ namespace TrabajoPractico.PoblationGenerators
             return Poblation;
         }
 
-        public Individual GetBest()
+        public virtual Individual GetBest()
         {
             return Poblation.FirstOrDefault();
         }

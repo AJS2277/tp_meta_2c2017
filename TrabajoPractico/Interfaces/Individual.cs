@@ -8,6 +8,6 @@ namespace TrabajoPractico.Interfaces
 {
     public interface Individual
     {
-        void Evaluate();
+        int Evaluate();
     }
 }

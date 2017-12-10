@@ -22,19 +22,22 @@ namespace TrabajoPractico
             var mutationGen = new MutationGeneration1();
             var crossOver = new SimpleMatrizCrossOver();
 
-            var genetic = new Genetic();
-            genetic.CrossOver = crossOver;
-            genetic.StopCriterion = stopCriterion;
-            genetic.MutationGenerator = mutationGen;
-            genetic.PoblationGenerator = poblationGen;
+            var genetic = new Genetic()
+            {
+                CrossOver = crossOver,
+                StopCriterion = stopCriterion,
+                MutationGenerator = mutationGen,
+                PoblationGenerator = poblationGen
+            };
 
-            Console.WriteLine("Matriz original: \n" + matriz.ToString());
-            Console.WriteLine(string.Format("Score original: {0}\n\n", matriz.Fitness));
+            Console.WriteLine($"Matriz original: \n{matriz.ToString()}");
+            Console.WriteLine($"Score original: {matriz.Fitness}\n\n");
 
             var bestMatriz = (Matriz) genetic.Start();
 
-            Console.WriteLine("Mejor matriz: \n" + bestMatriz.ToString());
-            Console.WriteLine(string.Format("Mejor score: {0}\n", bestMatriz.Fitness));
+            Console.WriteLine($"Mejor matriz: \n{bestMatriz.ToString()}");
+            Console.WriteLine($"Mejor score: {bestMatriz.Fitness}\n");
+            Console.ReadLine();
 
         }
 

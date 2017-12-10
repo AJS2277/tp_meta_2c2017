@@ -19,6 +19,15 @@ namespace TrabajoPractico.Entities
 
         public void Swap(Tuple<int, int> move)
         {
+            SwapInPosition(move);
+
+            Moves.Add(move);
+            Evaluate();
+
+        }
+
+        private void SwapInPosition(Tuple<int, int> move)
+        {
             var i = move.Item1;
             var j = move.Item2;
 
@@ -37,10 +46,6 @@ namespace TrabajoPractico.Entities
             var temp2 = matrix[i];
             matrix[i] = matrix[j];
             matrix[j] = temp2;
-
-            Moves.Add(move);
-            Evaluate();
-
         }
 
         public Matriz(int[][] matriz)
@@ -74,7 +79,7 @@ namespace TrabajoPractico.Entities
             return str;
         }
 
-        public virtual void Evaluate()
+        public virtual int Evaluate()
         {
             int score = 0;
 
@@ -82,7 +87,7 @@ namespace TrabajoPractico.Entities
             {
                 for (int j = 0; j < Size; j++)
                 {
-                    if(j >= i)
+                    if(j > i)
                     {
                         score += matrix[i][j];
                     }
@@ -90,15 +95,18 @@ namespace TrabajoPractico.Entities
             }
 
             Fitness = score;
+
+            return Fitness;
         }
 
         public void Rebuild()
         {
             var movesToDo = FactoryObject.DeepCopy(Moves);
+            matrix = FactoryObject.DeepCopy(Original);
 
             foreach (var move in movesToDo)
             {
-                Swap(move);
+                SwapInPosition(move);
             }
 
             Evaluate();

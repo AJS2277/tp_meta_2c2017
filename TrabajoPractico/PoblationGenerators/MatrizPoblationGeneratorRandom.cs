@@ -41,8 +41,17 @@ namespace TrabajoPractico.PoblationGenerators
         public override List<Individual> Select()
         {
             List<Matriz> selectedMatrices = Poblation.Cast<Matriz>().OrderByDescending(x => x.Fitness).Take(Selections).ToList();
+            Best = selectedMatrices.FirstOrDefault();
 
             return selectedMatrices.Cast<Individual>().ToList();
         }
+
+        public override Individual GetBest()
+        {
+            List<Matriz> selectedMatrices = Poblation.Cast<Matriz>().OrderByDescending(x => x.Fitness).ToList();
+
+            return selectedMatrices.FirstOrDefault();  
+        }
+
     }
 }
