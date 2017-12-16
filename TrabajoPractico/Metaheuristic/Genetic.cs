@@ -18,10 +18,6 @@ namespace TrabajoPractico.Metaheuristic
         public CrossOver CrossOver { get; set; }
         public Individual Best { get; set; }
 
-        public Genetic(params object[] list)
-        {
-        }
-
         public Individual Start()
         {
             Best = PoblationGenerator.Original;

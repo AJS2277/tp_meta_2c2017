@@ -17,23 +17,12 @@ namespace TrabajoPractico
         static void Main(string[] args)
         {
             Matriz matriz = GetSimpleMatriz();
-            var poblationGen = new MatrizPoblationGeneratorRandom(matriz, 6, 3);
-            var stopCriterion = new LOStopCriterion1(10);
-            var mutationGen = new MutationGeneration1();
-            var crossOver = new SimpleMatrizCrossOver();
-
-            var genetic = new Genetic()
-            {
-                CrossOver = crossOver,
-                StopCriterion = stopCriterion,
-                MutationGenerator = mutationGen,
-                PoblationGenerator = poblationGen
-            };
+            var loGenetic = new LOGenetic(matriz, 6, 3, 10);
 
             Console.WriteLine($"Matriz original: \n{matriz.ToString()}");
             Console.WriteLine($"Score original: {matriz.Fitness}\n\n");
 
-            var bestMatriz = (Matriz) genetic.Start();
+            var bestMatriz = (Matriz)loGenetic.Start();
 
             Console.WriteLine($"Mejor matriz: \n{bestMatriz.ToString()}");
             Console.WriteLine($"Mejor score: {bestMatriz.Fitness}\n");

@@ -43,7 +43,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CrossOvers\SimpleMatrizCrossOver.cs" />
+    <Compile Include="Entities\LOCategory.cs" />
+    <Compile Include="Entities\LOInput.cs" />
     <Compile Include="Entities\Matriz.cs" />
+    <Compile Include="Metaheuristic\LOGenetic.cs" />
     <Compile Include="MutationGenerators\MutationGeneration1.cs" />
     <Compile Include="PoblationGenerators\MatrizPoblationGeneratorRandom.cs" />
     <Compile Include="PoblationGenerators\PoblationGenerator.cs" />
@@ -54,7 +57,9 @@
     <Compile Include="MutationGenerators\MutationGenerator.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Readers\LOReader.cs" />
     <Compile Include="StopCriterions\LOStopCriterion1.cs" />
+    <Compile Include="Utils\Batchers\LOBatcher.cs" />
     <Compile Include="Utils\List\ListFactory.cs" />
     <Compile Include="Utils\Object\FactoryObject.cs" />
   </ItemGroup>
