@@ -45,6 +45,7 @@
     <Compile Include="CrossOvers\SimpleMatrizCrossOver.cs" />
     <Compile Include="Entities\LOCategory.cs" />
     <Compile Include="Entities\LOInput.cs" />
+    <Compile Include="Entities\LOOutput.cs" />
     <Compile Include="Entities\Matriz.cs" />
     <Compile Include="Metaheuristic\LOGenetic.cs" />
     <Compile Include="MutationGenerators\MutationGeneration1.cs" />
